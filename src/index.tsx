@@ -9,7 +9,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <main role="main" className="w-full h-screen">
+      <App />
+    </main>
   </React.StrictMode>
 );
 

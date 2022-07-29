@@ -1,4 +1,5 @@
 import React from "react";
+import FixedContent from "../components/fixedContent";
 
 type Item = {
   id: number;
@@ -27,10 +28,15 @@ const items = [
     content: "ddddddd!!!",
     uri: "#!",
   },
+  {
+    id: 5,
+    content: "EeEeEeEe!!!",
+    uri: "#!",
+  }
 ];
 
 function App() {
-  const generateLi = (item: Item) => {
+  const generateListHref = (item: Item) => {
     return (
       <li
         key={item.id}
@@ -42,55 +48,51 @@ function App() {
       </li>
     );
   };
+  //blur-sm pointer-events-none
 
   return (
     <>
-      <div className="fixed top-0 left-0 p-4 z-10">
-        <p>Absolute Element 1</p>
-        <p>Absolute Element 2</p>
-        <p>Absolute Element 3</p>
-      </div>
-      <div className="fixed bottom-0 right-0 p-4 z-10">
-        <p>Absolute Element 4</p>
-        <p>Absolute Element 5</p>
-        <p>Absolute Element 6</p>
-      </div>
-      <div className="flex">
-        <div className="flex-auto basis-3/4">
-          <div>
-            <ul className="list-none">{items.map((i) => generateLi(i))}</ul>
+      <FixedContent />
+      <div className="">
+        <div className="flex ">
+          <div className="flex-auto basis-3/4">
+            <div>
+              <ul className="list-none">
+                {items.map((i) => generateListHref(i))}
+              </ul>
+            </div>
           </div>
-        </div>
 
-        <div className="flex-auto basis-1/4">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-            vehicula turpis eget erat pulvinar euismod. Vestibulum consectetur
-            lacus quis erat facilisis, et sodales ex facilisis. Proin tempor
-            turpis velit, vel faucibus eros faucibus et. Maecenas a semper quam,
-            et finibus velit. Duis at turpis risus. Quisque varius volutpat ex,
-            vitae aliquam magna maximus sed. Vestibulum ante ipsum primis in
-            faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum
-            tempus diam sed arcu aliquet convallis. Aliquam metus sapien,
-            sodales nec purus eget, venenatis laoreet magna. Sed mattis ac quam
-            eu sodales. Curabitur pharetra tempus ultrices. Duis sit amet enim
-            quis justo convallis venenatis. Proin tincidunt scelerisque
-            accumsan.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-            vehicula turpis eget erat pulvinar euismod. Vestibulum consectetur
-            lacus quis erat facilisis, et sodales ex facilisis. Proin tempor
-            turpis velit, vel faucibus eros faucibus et. Maecenas a semper quam,
-            et finibus velit. Duis at turpis risus. Quisque varius volutpat ex,
-            vitae aliquam magna maximus sed. Vestibulum ante ipsum primis in
-            faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum
-            tempus diam sed arcu aliquet convallis. Aliquam metus sapien,
-            sodales nec purus eget, venenatis laoreet magna. Sed mattis ac quam
-            eu sodales. Curabitur pharetra tempus ultrices. Duis sit amet enim
-            quis justo convallis venenatis. Proin tincidunt scelerisque
-            accumsan.
-          </p>
+          <div className="flex-auto basis-1/4 p-4">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+              vehicula turpis eget erat pulvinar euismod. Vestibulum consectetur
+              lacus quis erat facilisis, et sodales ex facilisis. Proin tempor
+              turpis velit, vel faucibus eros faucibus et. Maecenas a semper
+              quam, et finibus velit. Duis at turpis risus. Quisque varius
+              volutpat ex, vitae aliquam magna maximus sed. Vestibulum ante
+              ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+              curae; Vestibulum tempus diam sed arcu aliquet convallis. Aliquam
+              metus sapien, sodales nec purus eget, venenatis laoreet magna. Sed
+              mattis ac quam eu sodales. Curabitur pharetra tempus ultrices.
+              Duis sit amet enim quis justo convallis venenatis. Proin tincidunt
+              scelerisque accumsan.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+              vehicula turpis eget erat pulvinar euismod. Vestibulum consectetur
+              lacus quis erat facilisis, et sodales ex facilisis. Proin tempor
+              turpis velit, vel faucibus eros faucibus et. Maecenas a semper
+              quam, et finibus velit. Duis at turpis risus. Quisque varius
+              volutpat ex, vitae aliquam magna maximus sed. Vestibulum ante
+              ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+              curae; Vestibulum tempus diam sed arcu aliquet convallis. Aliquam
+              metus sapien, sodales nec purus eget, venenatis laoreet magna. Sed
+              mattis ac quam eu sodales. Curabitur pharetra tempus ultrices.
+              Duis sit amet enim quis justo convallis venenatis. Proin tincidunt
+              scelerisque accumsan.
+            </p>
+          </div>
         </div>
       </div>
     </>

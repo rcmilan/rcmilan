@@ -32,7 +32,7 @@ const items = [
     id: 5,
     content: "EeEeEeEe!!!",
     uri: "#!",
-  }
+  },
 ];
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
     return (
       <li
         key={item.id}
-        className="transition ease-in-out delay-10 bg-green-200 hover:translate-x-6 hover:scale-110 hover:bg-green-600 hover:text-white duration-100 "
+        className="transition ease-in-out delay-10 bg-green-200 hover:translate-x-6 hover:scale-110 hover:bg-green-600 hover:text-white duration-100"
       >
         <a href={item.uri}>
           <p className="text-right text-9xl font-thin">{item.content}</p>
@@ -63,7 +63,7 @@ function App() {
             </div>
           </div>
 
-          <div className="flex-auto basis-1/4 p-4">
+          <div className="flex-auto p-4 basis-1/4">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
               vehicula turpis eget erat pulvinar euismod. Vestibulum consectetur

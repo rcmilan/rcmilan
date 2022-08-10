@@ -26,12 +26,14 @@ const links: Array<MenuItem> = [
 
 function Sidebar() {
   return (
-    <aside aria-label="Sidebar" className="h-screen sticky top-0 w-32 p-2">
-      <ul>
+    <aside aria-label="Sidebar" className="h-screen sticky top-0">
+      <ul className="w-32 m-3">
         {links.map((l) => (
-          <li key={l.key}>
+          <li key={l.key} className="transition ease-out hover:scale-110 m-3">
             <a href={l.href}>
-              <p className="hover:font-bold">{l.text}</p>
+              <p className="text-left hover:font-bold text-transform: uppercase">
+                {l.text}
+              </p>
             </a>
           </li>
         ))}

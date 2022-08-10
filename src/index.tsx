@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import Sidebar from "./components/sidebar";
 import "./index.css";
 import App from "./pages/App";
 import reportWebVitals from "./reportWebVitals";
@@ -10,7 +11,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <div className="flex">
-      <App />
+      <Sidebar />
+      <main role="main" className="w-full">
+        <App />
+      </main>
     </div>
   </React.StrictMode>
 );

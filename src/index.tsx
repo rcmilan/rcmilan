@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Sidebar from "./components/sidebar";
 import "./index.css";
 import App from "./pages/App";
+import Contact from "./pages/Contact";
+import Project from "./pages/Project";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
@@ -11,10 +14,16 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <div className="flex">
-      <Sidebar />
-      <main role="main" className="w-full">
-        <App />
-      </main>
+      <Router>
+        <Sidebar />
+        <main role="main" className="w-full">
+          <Routes>
+            <Route index element={<App />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/projects" element={<Project />} />
+          </Routes>
+        </main>
+      </Router>
     </div>
   </React.StrictMode>
 );

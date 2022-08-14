@@ -4,6 +4,9 @@
       "start": "Início",
       "projects": "Projetos",
       "contact": "Contato"
+    },
+    "contact": {
+      "header": "Contato"
     }
   }
 }

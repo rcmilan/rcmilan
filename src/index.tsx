@@ -19,7 +19,7 @@ root.render(
       <div className="flex">
         <Router>
           <Sidebar />
-          <main role="main" className="w-full">
+          <main role="main" className="w-full m-3">
             <Routes>
               <Route index element={<App />} />
               <Route path="/contact" element={<Contact />} />

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/sidebar";
 import "./index.css";
-import "./i18n.js";
+import "./i18n.ts";
 import App from "./pages/App";
 import Contact from "./pages/Contact";
 import Project from "./pages/Project";

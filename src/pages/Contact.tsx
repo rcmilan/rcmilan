@@ -9,7 +9,24 @@ interface Content {
   key: number;
   icon: JSX.Element;
   available: boolean;
+  href: string;
 }
+
+const buildLineDiv = (children: JSX.Element) => {
+  return <div className="m-1 p-2 border-2 hover:border-neutral-900">{children}</div>;
+};
+
+const buildAvailableLink = (href: string, children: JSX.Element) => {
+  return (
+    <a href={href} target="_blank" rel="noreferrer">
+      {buildLineDiv(children)}
+    </a>
+  );
+};
+
+const buildLineContent = (c: Content) => {
+  return <>{c.icon}</>;
+};
 
 function Contact() {
   const { t } = useTranslation();
@@ -19,27 +36,40 @@ function Contact() {
       key: 1,
       icon: <FontAwesomeIcon icon={faGithub} size="3x" />,
       available: true,
+      href: "https://github.com/rcmilan",
     },
     {
       key: 2,
       icon: <FontAwesomeIcon icon={faLinkedin} size="3x" />,
       available: true,
+      href: "https://www.linkedin.com/in/ricardo-silva-milan-044268b5/",
     },
     {
       key: 3,
       icon: <FontAwesomeIcon icon={faSpotify} size="3x" />,
       available: true,
+      href: "https://open.spotify.com/user/22wpi4nobprbbzofphwudzuuq",
     },
   ];
 
   return (
     <>
       <h1>{t("translation.contact.header")}</h1>
-      {contents.map((c) => (
-        <div key={c.key} className="flex m-5">
-          <div className="transition ease-out hover:scale-110">{c.icon}</div>
-        </div>
-      ))}
+      <div className="flex flex-col">
+        {contents
+          .sort((a, b) => a.key - b.key)
+          .map((c) => {
+            const childrenLineContent = buildLineContent(c);
+
+            return (
+              <div key={c.key}>
+                {c.available
+                  ? buildAvailableLink(c.href, childrenLineContent)
+                  : buildLineDiv(childrenLineContent)}
+              </div>
+            );
+          })}
+      </div>
     </>
   );
 }

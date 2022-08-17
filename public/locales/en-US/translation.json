@@ -4,6 +4,9 @@
       "start": "Start",
       "projects": "Projects",
       "contact": "Contact"
+    },
+    "contact": {
+      "header": "Contact"
     }
   }
 }

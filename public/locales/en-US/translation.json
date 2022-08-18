@@ -3,10 +3,14 @@
     "sidebar": {
       "start": "Start",
       "projects": "Projects",
-      "contact": "Contact"
+      "contact": "Contact",
+      "education": "Education"
     },
     "contact": {
       "header": "Contact"
+    },
+    "education": {
+      "header": "Subjects"
     }
   }
 }

@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Sidebar from "./components/sidebar";
+import Education from "./pages/Education";
 import "./index.css";
 import "./i18n.ts";
+import Sidebar from "./components/sidebar";
 import App from "./pages/App";
 import Contact from "./pages/Contact";
 import Project from "./pages/Project";
@@ -22,8 +23,9 @@ root.render(
           <main role="main" className="w-full m-3">
             <Routes>
               <Route index element={<App />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/education" element={<Education />} />
               <Route path="/projects" element={<Project />} />
+              <Route path="/contact" element={<Contact />} />
             </Routes>
           </main>
         </Router>

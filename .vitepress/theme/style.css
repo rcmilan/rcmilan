@@ -7,7 +7,9 @@
   --accent:  #8A6F4E;
 
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-  --measure: 120ch;
+  /* Viewport-relative so the page keeps the same proportion on wide displays;
+     the floor lets it fill the screen on small ones. */
+  --measure: max(62vw, 45rem);
   --space: 1rem;
 }
 

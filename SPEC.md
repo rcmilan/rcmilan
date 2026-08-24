@@ -28,6 +28,7 @@ without waiting on JavaScript.
 rcmilan/
 ├─ README.md                     ← GitHub profile page ONLY; srcExclude'd
 ├─ SPEC.md                       ← this file; srcExclude'd
+├─ TASKS.md                      ← implementation steps; srcExclude'd
 ├─ package.json
 ├─ index.md                      ← PT home = full archive
 ├─ sobre.md
@@ -214,8 +215,15 @@ Three constraints the implementation must respect:
 
 Locale-scoped, generated at build time, queried entirely in the browser.
 
-- A `buildEnd` hook walks the content tree and emits `search-index.pt.json` and
-  `search-index.en.json` (title, tags, summary, body text, slug).
+- A prebuild script walks the content tree and emits `search-index.pt.json` and
+  `search-index.en.json` (title, tags, summary, body text, slug) into `public/`.
+
+  > Originally specified as a VitePress `buildEnd` hook. Changed during
+  > implementation planning: `buildEnd` runs *after* `public/` has been copied to
+  > the output directory, and never runs during `vitepress dev`, which would leave
+  > search broken while writing. The generated files and runtime behaviour are
+  > identical. See `TASKS.md` Task 10.
+
 - A custom brutalist search box loads only the index for the current locale and
   queries it with [minisearch](https://github.com/lucaong/minisearch).
 - Results are always in the language the reader is already reading. Paired posts

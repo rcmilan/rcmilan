@@ -1,0 +1,21 @@
+{
+  "name": "rm-blog",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "search:index": "node scripts/build-search-index.mjs",
+    "docs:dev": "pnpm run search:index && vitepress dev",
+    "docs:build": "pnpm run search:index && vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3",
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.41"
+  },
+  "dependencies": {
+    "minisearch": "^7.2.0"
+  }
+}

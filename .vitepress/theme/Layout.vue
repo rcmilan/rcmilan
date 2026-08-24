@@ -7,6 +7,7 @@ import PostArticle from './components/PostArticle.vue'
 const { page, frontmatter } = useData()
 
 const isPost = computed(() => /(^|\/)posts\//.test(page.value.relativePath))
+const isHome = computed(() => page.value.relativePath === 'index.md')
 </script>
 
 <template>
@@ -22,7 +23,7 @@ const isPost = computed(() => /(^|\/)posts\//.test(page.value.relativePath))
       <PostArticle v-else-if="isPost" />
 
       <div v-else class="post-content">
-        <h1 v-if="frontmatter.title">{{ frontmatter.title }}</h1>
+        <h1 v-if="frontmatter.title && !isHome">{{ frontmatter.title }}</h1>
         <Content />
       </div>
     </main>

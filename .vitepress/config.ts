@@ -19,13 +19,13 @@ export default defineConfig({
       label: 'Português',
       lang: 'pt-BR',
       title: 'rm',
-      description: 'Notas e escritos de Ricardo Milan.'
+      description: 'Notas e escritos.'
     },
     en: {
       label: 'English',
       lang: 'en',
       title: 'rm',
-      description: 'Notes and writing by Ricardo Milan.'
+      description: 'Notes and writing.'
     }
   }
 })

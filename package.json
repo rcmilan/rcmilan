@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
     "search:index": "node scripts/build-search-index.mjs",
-    "docs:dev": "npm run search:index && vitepress dev",
-    "docs:build": "npm run search:index && vitepress build",
+    "docs:dev": "pnpm run search:index && vitepress dev",
+    "docs:build": "pnpm run search:index && vitepress build",
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {

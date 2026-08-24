@@ -109,7 +109,7 @@ td, th { border: 1px solid var(--border); padding: 0.3rem 0.5rem; text-align: le
 
 .site-footer {
   border-top: 1px solid var(--border);
-  margin-top: 4rem;
+  margin-top: var(--space);
   padding-top: var(--space);
   color: var(--muted);
   font-size: 13px;
@@ -126,6 +126,8 @@ td, th { border: 1px solid var(--border); padding: 0.3rem 0.5rem; text-align: le
   padding: 0.35rem 0;
   border-bottom: 1px solid var(--border);
 }
+/* The footer draws its own top rule, so a trailing item border would double it. */
+.post-list li:last-child { border-bottom: 0; }
 .post-list .date { color: var(--muted); white-space: nowrap; }
 .post-list .title { flex: 1; }
 .post-list .tags { color: var(--muted); font-size: 13px; }

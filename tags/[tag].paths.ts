@@ -4,7 +4,7 @@ import matter from 'gray-matter'
 
 export default {
   paths() {
-    const dir = join(process.cwd(), 'posts')
+    const dir = join(process.cwd(), 'posts', 'pt')
     const tags = new Set<string>()
     let files: string[] = []
     try {

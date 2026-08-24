@@ -5,8 +5,8 @@ import matter from 'gray-matter'
 const ROOT = process.cwd()
 
 const LOCALES = [
-  { code: 'pt', dir: 'posts',    urlBase: '/posts/' },
-  { code: 'en', dir: 'en/posts', urlBase: '/en/posts/' }
+  { code: 'pt', dir: 'posts/pt', urlBase: '/posts/pt/' },
+  { code: 'en', dir: 'posts/en', urlBase: '/posts/en/' }
 ]
 
 function stripMarkdown(md) {

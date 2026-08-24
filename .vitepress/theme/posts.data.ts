@@ -14,7 +14,7 @@ export interface Post {
 declare const data: Post[]
 export { data }
 
-export default createContentLoader('**/posts/*.md', {
+export default createContentLoader('posts/*/*.md', {
   transform(raw): Post[] {
     return raw
       .map((page) => {
@@ -27,7 +27,7 @@ export default createContentLoader('**/posts/*.md', {
           tags: Array.isArray(fm.tags) ? fm.tags : [],
           summary: fm.summary ?? '',
           translationKey: fm.translationKey ?? '',
-          locale: page.url.startsWith('/en/') ? 'en' : 'pt'
+          locale: page.url.startsWith('/posts/en/') ? 'en' : 'pt'
         } as Post
       })
       .sort((a, b) => b.dateSort - a.dateSort)

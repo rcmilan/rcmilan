@@ -1,0 +1,31 @@
+import { defineConfig } from 'vitepress'
+
+export default defineConfig({
+  srcDir: '.',
+  srcExclude: ['README.md', 'SPEC.md', 'TASKS.md', '**/node_modules/**'],
+
+  title: 'rm',
+  cleanUrls: true,
+  appearance: true,
+  lastUpdated: true,
+
+  markdown: {
+    theme: { light: 'github-light', dark: 'github-dark' }
+  },
+
+  locales: {
+    root: {
+      label: 'Português',
+      lang: 'pt-BR',
+      title: 'rm',
+      description: 'Notas e escritos de Ricardo Milan.'
+    },
+    en: {
+      label: 'English',
+      lang: 'en',
+      link: '/en/',
+      title: 'rm',
+      description: 'Notes and writing by Ricardo Milan.'
+    }
+  }
+})

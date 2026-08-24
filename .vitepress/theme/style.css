@@ -1,0 +1,174 @@
+:root {
+  --bg:      #F2EDE3;
+  --surface: #E9E2D4;
+  --text:    #23211C;
+  --muted:   #6E685C;
+  --border:  #D6CFC0;
+  --accent:  #8A6F4E;
+
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --measure: 68ch;
+  --space: 1rem;
+}
+
+.dark {
+  --bg:      #14130F;
+  --surface: #1C1A16;
+  --text:    #E6E1D4;
+  --muted:   #9A9384;
+  --border:  #2E2B24;
+  --accent:  #C9A227;
+}
+
+* { box-sizing: border-box; }
+
+html { color-scheme: light dark; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+a { color: var(--accent); text-decoration: underline; }
+a:hover { background: var(--accent); color: var(--bg); text-decoration: none; }
+
+hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+img { max-width: 100%; }
+
+/* Every box in this project is square and flat. */
+button, input, pre, code, blockquote, table, td, th {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+button {
+  font: inherit;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.5rem;
+  cursor: pointer;
+}
+button:hover { background: var(--surface); }
+
+input {
+  font: inherit;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.5rem;
+  width: 100%;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: var(--space);
+  overflow-x: auto;
+}
+
+code { font-family: var(--font-mono); }
+
+blockquote {
+  border-left: 2px solid var(--border);
+  margin-left: 0;
+  padding-left: var(--space);
+  color: var(--muted);
+}
+
+table { border-collapse: collapse; width: 100%; }
+td, th { border: 1px solid var(--border); padding: 0.3rem 0.5rem; text-align: left; }
+
+/* ---- layout ---- */
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 var(--space) 4rem;
+}
+
+.site-header {
+  display: flex;
+  gap: var(--space);
+  align-items: baseline;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  padding: var(--space) 0;
+  margin-bottom: 2rem;
+}
+.site-header .brand { font-weight: 700; text-decoration: none; color: var(--text); }
+.site-header nav { display: flex; gap: 0.75rem; flex: 1; }
+.site-header a { text-decoration: none; }
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: 4rem;
+  padding-top: var(--space);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ---- archive list ---- */
+
+.post-list { list-style: none; padding: 0; margin: 0; }
+.post-list li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.post-list .date { color: var(--muted); white-space: nowrap; }
+.post-list .title { flex: 1; }
+.post-list .tags { color: var(--muted); font-size: 13px; }
+
+.tag { color: var(--muted); text-decoration: none; }
+.tag::before { content: "["; }
+.tag::after { content: "]"; }
+
+/* ---- post ---- */
+
+.post-meta { color: var(--muted); font-size: 13px; margin-bottom: 2rem; }
+.post-content { line-height: 1.7; }
+.post-content h1, .post-content h2, .post-content h3 { line-height: 1.3; }
+.post-content p { position: relative; }
+
+.anchor {
+  margin-left: 0.4rem;
+  color: var(--muted);
+  text-decoration: none;
+  opacity: 0;
+}
+h2:hover .anchor, h3:hover .anchor, h4:hover .anchor { opacity: 1; }
+
+/* ---- tts ---- */
+
+.tts-btn {
+  margin-left: 0.4rem;
+  padding: 0 0.3rem;
+  font-size: 12px;
+  line-height: 1.4;
+  border: 1px solid var(--border);
+  opacity: 0;
+  vertical-align: middle;
+}
+/* Per-paragraph buttons only exist where a real pointer can hover them. */
+@media (hover: hover) {
+  .post-content p:hover .tts-btn { opacity: 1; }
+}
+@media (hover: none) {
+  .tts-btn { display: none; }
+}
+.tts-btn:focus-visible { opacity: 1; }
+
+/* ---- search ---- */
+
+.search-results { list-style: none; padding: 0; margin: 0.5rem 0 0; }
+.search-results li { padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
+.search-empty { color: var(--muted); padding: 0.5rem 0; }

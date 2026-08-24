@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   srcDir: '.',
   srcExclude: ['README.md', 'CLAUDE.md', '**/node_modules/**'],
+  base: '/rcmilan/',
 
   title: 'rm',
   cleanUrls: true,

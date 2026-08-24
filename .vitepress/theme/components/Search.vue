@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, shallowRef, computed, watch } from 'vue'
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import MiniSearch from 'minisearch'
 
 const { localeIndex } = useData()
@@ -12,7 +12,7 @@ const engine = shallowRef<MiniSearch | null>(null)
 let loading = false
 
 const indexUrl = computed(() =>
-  isEn.value ? '/search-index.en.json' : '/search-index.pt.json'
+  withBase(isEn.value ? '/search-index.en.json' : '/search-index.pt.json')
 )
 
 async function load() {
@@ -62,7 +62,7 @@ watch(indexUrl, () => {
     />
     <ul v-if="results.length" class="search-results">
       <li v-for="r in results" :key="r.id">
-        <a :href="r.id">{{ r.title }}</a>
+        <a :href="withBase(r.id)">{{ r.title }}</a>
       </li>
     </ul>
     <p v-else-if="query.trim()" class="search-empty">

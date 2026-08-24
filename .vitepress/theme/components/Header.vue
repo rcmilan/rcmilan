@@ -40,6 +40,6 @@ function toggleTheme() {
       type="button"
       @click="toggleTheme"
       :aria-label="isEn ? 'toggle theme' : 'alternar tema'"
-    >{{ isDark ? '☀' : '☾' }}</button>
+    ><i :class="isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i></button>
   </header>
 </template>

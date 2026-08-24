@@ -57,7 +57,13 @@ If a future feature needs the same "all posts, parsed" data in a fourth place, p
 
 ## Design constraints ("paper brutalism")
 
-Tokens and rules live in `.vitepress/theme/style.css`. The rules are load-bearing, not just current style — **never add** `border-radius` (other than the `0` reset), `box-shadow` (other than the `none` reset), `transition`, `animation`, or `linear-gradient` anywhere in this project. Monospace font stack only, no webfont requests.
+Tokens and rules live in `.vitepress/theme/style.css`. The rules are load-bearing, not just current style — **never add** `border-radius` (other than the `0` reset), `box-shadow` (other than the `none` reset), `transition`, `animation`, or `linear-gradient` anywhere in this project. Monospace font stack only for text.
+
+Page width is governed by one token: `--measure`, whose only consumer is `.wrap`'s `max-width`. `.wrap` wraps the whole page (header, main, footer), so that single value sets the width of everything. It is deliberately viewport-relative (`max(62vw, 45rem)`) rather than a `ch` value — a `ch` measure is a fixed pixel width that silently shrinks as a proportion of the page the wider the display, which reads as "nothing changed" on large monitors.
+
+### Icons
+
+Icons come from **Font Awesome Free 7** (`@fortawesome/fontawesome-free`), self-hosted — add any new icon as a `<i class="fa-solid fa-*">` rather than an emoji or a unicode glyph. This is the one deliberate exception to the no-webfont rule above; the font applies only to `.fa-*` elements, so body text stays monospace. `.vitepress/theme/index.ts` imports `css/fontawesome.css` + `css/solid.css` specifically (not `css/all.css`) so the build ships only `fa-solid-900.woff2` and not the unused brands and regular faces — keep it that way when adding icons, and stick to the solid style. Note that some icons are Pro-only; `fa-volume` in particular exists in Free only from Font Awesome 7 onward.
 
 ## Search
 
@@ -66,3 +72,8 @@ Tokens and rules live in `.vitepress/theme/style.css`. The rules are load-bearin
 ## Text-to-speech
 
 `Tts.vue` uses the browser's native `speechSynthesis` — no backend, no API key. Two things that are easy to regress: voice availability is per-OS and not guaranteed, so controls must stay hidden (not just disabled) when `hasVoice` is false rather than rendering a dead button; and Chrome truncates a single utterance beyond ~15s, so text is always spoken one paragraph-utterance at a time, never as one call for the whole post.
+
+Two more, both learned from bugs that already happened once:
+
+- **`props.container` is null while `Tts` mounts.** `PostArticle.vue` renders `<Tts :container="contentEl" />` *before* the `<div ref="contentEl">` it points at, and a child's `onMounted` runs before the parent finishes assigning template refs. Anything that needs the container — appending the per-paragraph buttons, attaching the click listener — must therefore hang off the `watch(() => props.container, …)`, never off `onMounted`, or it silently no-ops on the null guard and only the "read post" button (which reads the prop lazily at click time) appears to work.
+- **Voices are ranked, not first-matched.** `getVoices()` returns an arbitrary order that usually puts the local formant synthesiser ahead of the neural cloud voice, so picking the first `lang` match sounds robotic. `score()` prefers an exact locale over a generic one, non-local over local, and known-natural names over known-robotic ones. Keep the scoring if you touch voice selection.

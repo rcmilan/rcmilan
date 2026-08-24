@@ -103,7 +103,7 @@ function decorate() {
     const b = document.createElement('button')
     b.type = 'button'
     b.className = 'tts-btn'
-    b.textContent = '🔊'
+    b.innerHTML = '<i class="fa-solid fa-volume"></i>'
     b.setAttribute('aria-label', isEn.value ? 'read paragraph' : 'ler parágrafo')
     p.appendChild(b)
   })
@@ -173,7 +173,8 @@ watch(() => route.path, async () => {
 <template>
   <p v-if="hasVoice">
     <button type="button" @click="readAll">
-      {{ speaking ? (isEn ? '■ stop' : '■ parar') : (isEn ? '▶ read post' : '▶ ler post') }}
+      <i :class="speaking ? 'fa-solid fa-stop' : 'fa-solid fa-play'"></i>
+      {{ speaking ? (isEn ? 'stop' : 'parar') : (isEn ? 'read post' : 'ler post') }}
     </button>
   </p>
 </template>

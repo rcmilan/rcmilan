@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { data as posts } from '../posts.data'
 
 const { page, frontmatter, localeIndex } = useData()
@@ -32,13 +32,13 @@ const translation = computed(() => {
     <span v-if="revised"> · {{ isEn ? 'revised' : 'revisado' }} {{ revised }}</span>
     <span v-if="translation">
       ·
-      <a :href="translation.url">
+      <a :href="withBase(translation.url)">
         {{ isEn ? 'também em português ↗' : 'also in english ↗' }}
       </a>
     </span>
     <div v-if="frontmatter.tags?.length">
       <template v-for="t in frontmatter.tags" :key="t">
-        <a v-if="!isEn" class="tag" :href="'/tags/' + t">{{ t }}</a>
+        <a v-if="!isEn" class="tag" :href="withBase('/tags/' + t)">{{ t }}</a>
         <span v-else class="tag">{{ t }}</span>
       </template>
     </div>

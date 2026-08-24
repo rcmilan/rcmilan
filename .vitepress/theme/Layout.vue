@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData, Content } from 'vitepress'
+import { useData, Content, withBase } from 'vitepress'
 import Header from './components/Header.vue'
 import PostArticle from './components/PostArticle.vue'
 
 const { page, frontmatter } = useData()
 
 const isPost = computed(() => /(^|\/)posts\//.test(page.value.relativePath))
+const isHome = computed(() => page.value.relativePath === 'index.md')
 </script>
 
 <template>
@@ -16,13 +17,13 @@ const isPost = computed(() => /(^|\/)posts\//.test(page.value.relativePath))
     <main>
       <div v-if="page.isNotFound">
         <h1>404</h1>
-        <p><a href="/">voltar ao início</a></p>
+        <p><a :href="withBase('/')">voltar ao início</a></p>
       </div>
 
       <PostArticle v-else-if="isPost" />
 
       <div v-else class="post-content">
-        <h1 v-if="frontmatter.title">{{ frontmatter.title }}</h1>
+        <h1 v-if="frontmatter.title && !isHome">{{ frontmatter.title }}</h1>
         <Content />
       </div>
     </main>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { data as posts } from '../posts.data'
 import Search from './Search.vue'
 
@@ -25,21 +25,21 @@ function toggleTheme() {
 
 <template>
   <header class="site-header">
-    <a class="brand" href="/">rm</a>
+    <a class="brand" :href="withBase('/')">rm</a>
 
     <nav>
-      <a href="/tags">TAGS</a>
-      <a href="/sobre">SOBRE</a>
+      <a :href="withBase('/tags')">TAGS</a>
+      <a :href="withBase('/sobre')">SOBRE</a>
     </nav>
 
     <Search />
 
-    <a v-if="pair" :href="pair.url">{{ isEn ? 'PT' : 'EN' }}</a>
+    <a v-if="pair" :href="withBase(pair.url)">{{ isEn ? 'PT' : 'EN' }}</a>
 
     <button
       type="button"
       @click="toggleTheme"
       :aria-label="isEn ? 'toggle theme' : 'alternar tema'"
-    >{{ isDark ? '☀' : '☾' }}</button>
+    ><i :class="isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i></button>
   </header>
 </template>

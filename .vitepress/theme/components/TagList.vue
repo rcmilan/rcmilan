@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { withBase } from 'vitepress'
 import { data as posts } from '../posts.data'
 
 const props = defineProps<{ tag: string }>()
@@ -13,9 +14,9 @@ const filtered = computed(() =>
   <ul v-if="filtered.length" class="post-list">
     <li v-for="post in filtered" :key="post.url">
       <span class="date">{{ post.date }}</span>
-      <a class="title" :href="post.url">{{ post.title }}</a>
+      <a class="title" :href="withBase(post.url)">{{ post.title }}</a>
       <span class="tags">
-        <a v-for="t in post.tags" :key="t" class="tag" :href="`/tags/${t}`">{{ t }}</a>
+        <a v-for="t in post.tags" :key="t" class="tag" :href="withBase(`/tags/${t}`)">{{ t }}</a>
       </span>
     </li>
   </ul>

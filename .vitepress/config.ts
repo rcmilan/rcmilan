@@ -23,7 +23,6 @@ export default defineConfig({
     en: {
       label: 'English',
       lang: 'en',
-      link: '/en/',
       title: 'rm',
       description: 'Notes and writing by Ricardo Milan.'
     }

@@ -2,13 +2,7 @@
 import { computed } from 'vue'
 import { data as posts } from '../posts.data'
 
-const props = defineProps<{ locale: 'pt' | 'en' }>()
-
-const filtered = computed(() => posts.filter((p) => p.locale === props.locale))
-
-function tagUrl(t: string) {
-  return props.locale === 'en' ? `/en/tags/${t}` : `/tags/${t}`
-}
+const filtered = computed(() => posts.filter((p) => p.locale === 'pt'))
 </script>
 
 <template>
@@ -17,11 +11,9 @@ function tagUrl(t: string) {
       <span class="date">{{ post.date }}</span>
       <a class="title" :href="post.url">{{ post.title }}</a>
       <span class="tags">
-        <a v-for="t in post.tags" :key="t" class="tag" :href="tagUrl(t)">{{ t }}</a>
+        <a v-for="t in post.tags" :key="t" class="tag" :href="`/tags/${t}`">{{ t }}</a>
       </span>
     </li>
   </ul>
-  <p v-else class="search-empty">
-    {{ locale === 'en' ? 'no posts yet.' : 'ainda não há posts.' }}
-  </p>
+  <p v-else class="search-empty">ainda não há posts.</p>
 </template>

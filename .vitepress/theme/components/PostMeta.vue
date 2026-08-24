@@ -24,7 +24,6 @@ const translation = computed(() => {
   return posts.find((p) => p.translationKey === key && p.locale === target) ?? null
 })
 
-const tagBase = computed(() => (isEn.value ? '/en/tags/' : '/tags/'))
 </script>
 
 <template>
@@ -38,12 +37,10 @@ const tagBase = computed(() => (isEn.value ? '/en/tags/' : '/tags/'))
       </a>
     </span>
     <div v-if="frontmatter.tags?.length">
-      <a
-        v-for="t in frontmatter.tags"
-        :key="t"
-        class="tag"
-        :href="tagBase + t"
-      >{{ t }}</a>
+      <template v-for="t in frontmatter.tags" :key="t">
+        <a v-if="!isEn" class="tag" :href="'/tags/' + t">{{ t }}</a>
+        <span v-else class="tag">{{ t }}</span>
+      </template>
     </div>
   </div>
 </template>

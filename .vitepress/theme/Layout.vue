@@ -4,10 +4,9 @@ import { useData, Content } from 'vitepress'
 import Header from './components/Header.vue'
 import PostArticle from './components/PostArticle.vue'
 
-const { page, frontmatter, localeIndex } = useData()
+const { page, frontmatter } = useData()
 
 const isPost = computed(() => /(^|\/)posts\//.test(page.value.relativePath))
-const isEn = computed(() => localeIndex.value === 'en')
 </script>
 
 <template>
@@ -17,11 +16,7 @@ const isEn = computed(() => localeIndex.value === 'en')
     <main>
       <div v-if="page.isNotFound">
         <h1>404</h1>
-        <p>
-          <a :href="isEn ? '/en/' : '/'">
-            {{ isEn ? 'back home' : 'voltar ao início' }}
-          </a>
-        </p>
+        <p><a href="/">voltar ao início</a></p>
       </div>
 
       <PostArticle v-else-if="isPost" />

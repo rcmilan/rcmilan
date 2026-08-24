@@ -6,4 +6,4 @@ title: rm
 
 Notas, código e escritos.
 
-<PostList locale="pt" />
+<PostList />
